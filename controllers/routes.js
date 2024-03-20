@@ -13,11 +13,7 @@ module.exports = function(passport){
                 return res.render('index');
         },
         signup: function(req, res){
-            if(req.user){
-                res.redirect('/');
-            }else{
-                res.render('signup');
-            }
+                return res.render('signup.ejs');
         },
         createAccount: passport.authenticate('local.signup', {
             successRedirect: '/',
