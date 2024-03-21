@@ -1,0 +1,8 @@
+section{
+    padding: 100px 0;
+}
+
+.hero-section{
+    background: linear-gradient(135deg, #6217C4 0.59%, #8E4DE6 100%);
+    color: #fff;
+}

@@ -4,8 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domain Flip</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/homepage.css">
 </head>
 <body>
-    
+    <nav class="navbar navbar-expand-lg py-3 m-0" data-aos="fade-down" data-aos-delay="800">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Navbar brand -->
+            <a class="navbar-brand me-2" href="#">
+                <img src="./assets/img/logo.png" style="width: 80px; height: auto;margin-top: -10px" alt=""> Domain
+            </a>
+
+            <!-- Toggle button -->
+            <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse text-white" id="navbarText">
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="#" class="px-3 pt-2 btn-link">
+                            About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://medium.com/@junomonetacoin/juno-unleash-the-wealth-within-empowering-your-crypto-journey-e7a7253071a8" class="px-3 pt-2 btn-link">
+                            Whitepaper
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="">
+                            <button type="button" class="px-3 btn pt-2 px-5 uni-btn" data-toggle="modal"
+                                data-target="#exampleModal" style="font-size: 15px;margin-top: -8px; font-weight: 600;">
+                                Join Presale
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <main>
+        <section class="hero-section">
+            <div class="container text-center">
+                <h1>Unlock the Future of Domain and Cloud Hosting with Cryptocurrencies</h1>
+                <p>Web Domain Services simplifies domain registration and cloud hosting with secure, cryptocurrency transactions, offering a seamless, blockchain-enhanced web management experience.</p>
+                <form action="/domain/search" method="POST">
+                    <input type="text" name = "domainName" placeholder = "Google.com">
+                    <button type = "Submit">Search</button>
+                </form>
+                <% if(domain){ %>
+                    <div class="d-flex mt-4 bg-dark pt-3">
+                        <p style = "flex: 1"><%= domain.Domain %></p>
+                        <form action="/domain/buy" method="POST" style = "flex: 1">
+                            <input type="text" name="domainName" id="" value = "<%= domain.Domain %>" hidden>
+                            <button type="submit">Buy This Domain</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js" charset="utf-8"></script>
 </body>
 </html>

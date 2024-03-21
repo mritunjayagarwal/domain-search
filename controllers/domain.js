@@ -2,8 +2,8 @@ const { query } = require("express");
 module.exports = function (User, axios, xml2js) {
     return {
         SetRouting: function (router) {
-            router.get('/domain/search', this.searchDomain);
-            router.get('/domain/buy', this.buyDomain);
+            router.post('/domain/search', this.searchDomain);
+            router.post('/domain/buy', this.buyDomain);
             router.get('/user/domains', this.getUserDomains);
             router.get('/domains/list', this.listDomains);
         },
@@ -14,18 +14,23 @@ module.exports = function (User, axios, xml2js) {
                 params: {
                     ApiUser: 'Prithvi0707',
                     ApiKey: "23155f2f37ca4ccba99b8962c78cb028",
-                    UserName: 'Mritunjay0707',
+                    UserName: 'Prithvi0707',
                     Command: 'namecheap.domains.check',
                     ClientIp: '122.161.72.212',
-                    DomainList: 'gameplaeyu.com'
+                    DomainList: req.body.domainName
                 }
             });
+            let domain;
             xml2js.parseString(resp.data, function (err, results) {
-                // display the json data 
-                return res.send(results);
+                if(results.ApiResponse.$.Status == "OK"){
+                    console.log(results.ApiResponse.CommandResponse[0].DomainCheckResult[0].$)
+                    domain = results.ApiResponse.CommandResponse[0].DomainCheckResult[0].$
+                }else return false
             });
+            return res.render('index', {domain})
         },
         buyDomain: async (req, res, next) => {
+            console.log(req.body.domainName)
             const resp = await axios({
                 method: 'get',
                 url: 'https://api.sandbox.namecheap.com/xml.response',
@@ -35,7 +40,7 @@ module.exports = function (User, axios, xml2js) {
                     UserName: 'Prithvi0707',
                     Command: "namecheap.domains.create",
                     ClientIp: "122.161.72.212",
-                    DomainName: "mritunjayerty.com",
+                    DomainName: req.body.domainName,
                     Years: "1",
                     AuxBillingFirstName: "John",
                     AuxBillingLastName: "Smith",
@@ -85,16 +90,16 @@ module.exports = function (User, axios, xml2js) {
                 }
             });
             xml2js.parseString(resp.data, async function (err, results) {
-                // display the json data 
-                console.log(req.user.username);
                 if(results.ApiResponse.$.Status == "OK"){
                     await User.findOneAndUpdate({_id: req.user._id}, {
                         $push: {
-                            domains: "mritunjayerty.com"
+                            domains: req.body.domainName
                         }
                     })
+                    return res.redirect('/domains/list');
+                }else{
+                    return res.send(results)
                 }
-                return res.send(results);
             });
         },
         getUserDomains: async (req, res, next) => {
@@ -115,6 +120,8 @@ module.exports = function (User, axios, xml2js) {
             });
         },
         listDomains: async (req, res, next) => {
+            if(req.user === undefined) return res.redirect('/');
+            console.log(req.user)
             const resp = await axios({
                 method: 'get',
                 url: 'https://api.sandbox.namecheap.com/xml.response',
@@ -129,8 +136,9 @@ module.exports = function (User, axios, xml2js) {
             xml2js.parseString(resp.data, function (err, results) {
                 // display the json data 
                 if(req.user === undefined) return false;
-                const userDomains = req.user.domains.map(domain => domain);
+                const userDomains = req.user.domains.map(domain => domain.toLowerCase());
                 const domains = results.ApiResponse.CommandResponse[0].DomainGetListResult[0].Domain.filter(domain => userDomains.includes(domain.$.Name));
+                console.log(results.ApiResponse.CommandResponse[0].DomainGetListResult[0].Domain)
                 return res.render('dashboard', {domains})
             });
         }

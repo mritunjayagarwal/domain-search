@@ -10,7 +10,7 @@ module.exports = function(passport){
             router.post('/login', this.getInside);
         },
         indexPage: async function(req, res){
-                return res.render('index');
+                return res.render('index', {domain: null});
         },
         signup: function(req, res){
                 return res.render('signup.ejs');
