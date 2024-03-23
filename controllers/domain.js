@@ -122,25 +122,28 @@ module.exports = function (User, axios, xml2js) {
         listDomains: async (req, res, next) => {
             if(req.user === undefined) return res.redirect('/');
             console.log(req.user)
-            const resp = await axios({
-                method: 'get',
-                url: 'https://api.sandbox.namecheap.com/xml.response',
-                params: {
-                    ApiUser: 'Prithvi0707',
-                    ApiKey: "23155f2f37ca4ccba99b8962c78cb028",
-                    UserName: 'Prithvi0707',
-                    Command: 'namecheap.domains.getList',
-                    ClientIp: '122.161.72.212',
-                }
-            });
-            xml2js.parseString(resp.data, function (err, results) {
-                // display the json data 
-                if(req.user === undefined) return false;
-                const userDomains = req.user.domains.map(domain => domain.toLowerCase());
-                const domains = results.ApiResponse.CommandResponse[0].DomainGetListResult[0].Domain.filter(domain => userDomains.includes(domain.$.Name));
-                console.log(results.ApiResponse.CommandResponse[0].DomainGetListResult[0].Domain)
-                return res.render('dashboard', {domains})
-            });
+            // const resp = await axios({
+            //     method: 'get',
+            //     url: 'https://api.sandbox.namecheap.com/xml.response',
+            //     params: {
+            //         ApiUser: 'Prithvi0707',
+            //         ApiKey: "23155f2f37ca4ccba99b8962c78cb028",
+            //         UserName: 'Prithvi0707',
+            //         Command: 'namecheap.domains.getList',
+            //         ClientIp: '122.161.72.212',
+            //     }
+            // });
+            // xml2js.parseString(resp.data, function (err, results) {
+            //     // display the json data 
+            //     console.log(results)
+            //     if(req.user === undefined) return false;
+            //     const userDomains = req.user.domains.map(domain => domain.toLowerCase());
+            //     const domains = results.ApiResponse.CommandResponse[0].DomainGetListResult[0].Domain.filter(domain => userDomains.includes(domain.$.Name));
+            //     console.log(results.ApiResponse.CommandResponse[0].DomainGetListResult[0].Domain)
+            //     return res.render('dashboard', {domains})
+            // });
+
+            return res.render('dashboard', {domains: []})
         }
     }
 }
