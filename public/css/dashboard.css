@@ -1,5 +1,83 @@
-.domain-card{
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.domain-card {
     border: 1px solid #eee;
     padding: 1em;
     border-radius: 20px;
+    height: 100%;
+    transition: 0.2s;
+    margin-top: 20px;
+}
+
+.domain-card:hover{
+    transform: scale(1.04);
+}
+
+.domain-name {
+    font-family: DM Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20.83px;
+    text-align: left;
+    color: #000;
+}
+
+.domain-price {
+    font-family: DM Sans;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 31.25px;
+    text-align: left;
+    color: #000
+}
+
+/* Tab Switch */
+
+.wrapper {
+    width: 100%;
+    font-family: sans-serif;
+    color: #555;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.tabs {
+    border-bottom: 2px solid #DDDDDD;
+}
+
+.tabs li {
+    float: left;
+    width: 15%;
+    list-style-type: none;
+}
+
+.tabs a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #202020;
+    padding: 20px 0;
+    font-family: Nunito;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 27.28px;
+    text-align: center;
+    margin-left: -40px
+}
+
+.tabs a:hover,
+.tabs a.active {
+    border-bottom: 2px solid #6217C4;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
 }

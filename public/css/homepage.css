@@ -1,8 +1,165 @@
-section{
+section {
     padding: 100px 0;
 }
 
-.hero-section{
+.main-btn {
+    background: #6C22D2;
+    border: unset;
+    outline: unset;
+    padding: 0.8em 2em;
+    font-family: Nunito;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20.46px;
+    letter-spacing: 1.0714285373687744px;
+    color: #fff;
+}
+
+.main-btn-yellow {
+    background: #F8CC5E;
+    border: unset;
+    outline: unset;
+    padding: 0.8em 2em;
+    font-family: Nunito;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20.46px;
+    letter-spacing: 1.0714285373687744px;
+    color: #fff;
+}
+
+.secondary-section-heading {
+    font-family: Nunito;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 42px;
+    letter-spacing: 1.2000000476837158px;
+    color: #6C22D2;
+}
+
+.section-heading {
+    font-family: Nunito;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 1.2000000476837158px;
+}
+
+.section-para {
+    font-family: Nunito;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0.6000000238418579px;
+}
+
+/* Navbar */
+
+.nav-item a {
+    color: #77838F;
+    transition: 0.2s ease-in;
+    font-family: Nunito;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21.82px;
+    letter-spacing: 1.2000000476837158px;
+    text-align: left;
+}
+
+.nav-item a:hover {
+    text-decoration: none;
+    color: #6217C4;
+}
+
+.hero-section {
     background: linear-gradient(135deg, #6217C4 0.59%, #8E4DE6 100%);
     color: #fff;
+}
+
+/* Support Section */
+
+.support-section {
+    background: url('../img/support/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.support-head {
+    font-family: Nunito;
+    font-size: 55px;
+    font-weight: 700;
+    line-height: 70px;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+/* Plans section */
+
+.plan-item{
+    padding: 1em
+}
+
+.plan-size {
+    font-family: Nunito;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.6000000238418579px;
+    color: #6217C4
+}
+
+.plan-size-yellow {
+    font-family: Nunito;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.6000000238418579px;
+    color:#F8CC5E
+}
+
+.plan-price {
+    font-family: Nunito;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 75px;
+    letter-spacing: 2.25px;
+}
+
+.plan-desc {
+    font-family: Nunito;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0.6000000238418579px;
+    color: #77838F;
+}
+
+.plan-btn{
+    background: rgba(108, 34, 210, 0.3);
+    border: unset;
+    outline: unset;
+    padding: 0.8em 2em;
+    font-family: Nunito;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20.46px;
+    letter-spacing: 1.0714285373687744px;
+    border-radius: 5px;
+    color:#6217C4;
+}
+
+.plan-btn-yellow{
+    background:rgba(248, 204, 94, 0.3);
+    border: unset;
+    outline: unset;
+    padding: 0.8em 2em;
+    font-family: Nunito;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20.46px;
+    letter-spacing: 1.0714285373687744px;
+    border-radius: 5px;
+    color:#F8CC5E;
 }
