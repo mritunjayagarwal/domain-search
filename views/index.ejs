@@ -17,7 +17,7 @@
         <!-- Container wrapper -->
         <div class="container">
             <!-- Navbar brand -->
-            <a class="navbar-brand me-2" style = "color: #000; margin-top: -11px" href="/">
+            <a class="navbar-brand me-2" style="color: #000; margin-top: -11px" href="/">
                 Web Domain Service
             </a>
 
@@ -29,7 +29,7 @@
 
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse text-white" id="navbarText">
-                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0 mt-1">
                     <li class="nav-item">
                         <a href="#" class="px-3 pt-2 btn-link">
                             Home
@@ -61,31 +61,30 @@
                     </li>
                     <% if(!user){ %>
                         <li class="nav-item">
-                            <a href="/login"
-                                class="px-3 pt-2 btn-link">
+                            <a href="/login" class="px-3 pt-2 btn-link">
                                 Sign In
                             </a>
                         </li>
-                    <% } %>
-                    <li class="nav-item">
-                        <% if(user){ %>
-                            <a href="/domains/list">
-                                <button type="button" class="px-3 btn main-btn" data-toggle="modal"
-                                    data-target="#exampleModal"
-                                    style="font-size: 15px;margin-top: -8px; font-weight: 600;">
-                                    Dashboard
-                                </button>
-                            </a>
-                            <% }else{ %>
-                                <a href="/signup">
-                                    <button type="button" class="px-3 btn pt-2 main-btn" data-toggle="modal"
-                                        data-target="#exampleModal"
-                                        style="font-size: 15px;margin-top: -8px; font-weight: 600;">
-                                        Signup
-                                    </button>
-                                </a>
-                                <% } %>
-                    </li>
+                        <% } %>
+                            <li class="nav-item">
+                                <% if(user){ %>
+                                    <a href="/domains/list">
+                                        <button type="button" class="px-3 btn main-btn" data-toggle="modal"
+                                            data-target="#exampleModal"
+                                            style="font-size: 15px;margin-top: -8px; font-weight: 600;">
+                                            Dashboard
+                                        </button>
+                                    </a>
+                                    <% }else{ %>
+                                        <a href="/signup">
+                                            <button type="button" class="px-3 btn pt-2 main-btn" data-toggle="modal"
+                                                data-target="#exampleModal"
+                                                style="font-size: 15px;margin-top: -8px; font-weight: 600;">
+                                                Signup
+                                            </button>
+                                        </a>
+                                        <% } %>
+                            </li>
                 </ul>
             </div>
             <!-- Collapsible wrapper -->
@@ -141,15 +140,16 @@
                                 <%= domain.Domain %>
                             </p>
                             <p class="mt-3">
-                                <%= domain.Available === 'true' && domain.IsPremiumName === 'false' ? 'Available' : 'Not Available' %>
+                                <%= domain.Available==='true' && domain.IsPremiumName==='false' ? 'Available'
+                                    : 'Not Available' %>
                             </p>
                             <!-- Button trigger modal -->
-                            <% if(domain.Available === 'true' && domain.IsPremiumName === 'false'){ %>
+                            <% if(domain.Available==='true' && domain.IsPremiumName==='false' ){ %>
                                 <button type="button" class="domain-search-btn" data-toggle="modal"
-                                data-target="#usernameModal">
-                                Buy Now
-                            </button>
-                            <% } %>
+                                    data-target="#usernameModal">
+                                    Buy Now
+                                </button>
+                                <% } %>
                         </div>
                     </div>
                     <% } %>
@@ -260,7 +260,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action = "/checkout" method = "post">
+                        <form action="/checkout" method="post">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">First Name</label>
@@ -568,7 +568,8 @@
                                 <input type="text" class="form-control" name="zip" id="inputAddress" placeholder="12345"
                                     required>
                             </div>
-                            <input type="text" class="form-control" name="domainName" id="inputCity" value = "<%= domain.Domain %>" hidden>
+                            <input type="text" class="form-control" name="domainName" id="inputCity"
+                                value="<%= domain.Domain %>" hidden>
                             <button type="submit" class="btn btn-primary btn-block">Proceed to Pay</button>
                         </form>
 
