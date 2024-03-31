@@ -82,24 +82,19 @@ module.exports = function (passport, axios, User, xml2js) {
             console.log("Did not exists");
             return res.redirect('/');
          }
-         const returnQuery = async () => {
-            return await User.findOneAndUpdate({ _id: req.user._id }, {
-               $set: {
-                  fname: req.body.fname, 
-                  lname: req.body.lname,
-                  phone: req.body.phone,
-                  address: req.body.address,
-                  organisation: req.body.orgname,
-                  country: req.body.country,
-                  state: req.body.state,
-                  city: req.body.city,
-                  zip: req.body.zip
-               }
-            }, (err, result) => {
-               if (err) status = true;
-            });
-         }
-         returnQuery();
+         await User.findOneAndUpdate({ _id: req.user._id }, {
+            $set: {
+               fname: req.body.fname,
+               lname: req.body.lname,
+               phone: req.body.phone,
+               address: req.body.address,
+               organisation: req.body.orgname,
+               country: req.body.country,
+               state: req.body.state,
+               city: req.body.city,
+               zip: req.body.zip
+            }
+         });
          if (status) return res.redirect('/');
          try {
             const resp = await axios({
@@ -129,7 +124,7 @@ module.exports = function (passport, axios, User, xml2js) {
          const userId = data.order_number.split('plisio')[0];
          if (data && vallidateRequest(data) && data.status === "completed") {
             console.log("reached true case")
-            const user = await User.findOne({_id: userId});
+            const user = await User.findOne({ _id: userId });
             console.log(user)
             const resp = await axios({
                method: 'get',
@@ -196,7 +191,7 @@ module.exports = function (passport, axios, User, xml2js) {
                         domains: data.order_name
                      }
                   })
-               }else{
+               } else {
                   console.log(results.ApiResponse.Error);
                }
             });
