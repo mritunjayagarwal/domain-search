@@ -29,17 +29,11 @@
                     <li><a href="#">En</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">Draude Oba <span class="caret"></span></a>
+                            aria-expanded="false"><%= user.username %><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Settings</a></li>
-                            <li><a href="#">Upgrade</a></li>
-                            <li><a href="#">Help</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="/">Logout</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="fa fa-bell-o"></i></a></li>
-                    <li><a href="#"><i class="fa fa-comment-o"></i></a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <input type="text" class="form-control" placeholder="Search...">
@@ -177,19 +171,23 @@
                                                 <tbody>
                                                   <tr>
                                                     <th scope="row">Owned By</th>
-                                                    <td>Mritunjay Agarwal</td>
+                                                    <td><%= user.fname %>  <%= user.lname %></td>
                                                   </tr>
                                                   <tr>
                                                     <th scope="row">Registered Email Address</th>
                                                     <td><%= user.email %></td>
                                                   </tr>
                                                   <tr>
-                                                    <th scope="row">Street Address 1</th>
-                                                    <td>8,govindpuri ext.,kamla nagar, kk, AgraAgra, Uttar Pradesh, India 282005</td>
+                                                    <th scope="row">Registered Phone Number</th>
+                                                    <td><%= user.phone %></td>
                                                   </tr>
                                                   <tr>
                                                     <th scope="row">Street Address 2</th>
-                                                    <td>N/A</td>
+                                                    <td><%= user.organisation %></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th scope="row">Street Address 1</th>
+                                                    <td><%= user.address %></td>
                                                   </tr>
                                                 </tbody>
                                               </table>
@@ -199,15 +197,19 @@
                                                 <tbody>
                                                   <tr>
                                                     <th scope="row">Billing Country</th>
-                                                    <td>India</td>
+                                                    <td><%= user.country %></td>
                                                   </tr>
                                                   <tr>
                                                     <th scope="row">Billing State/Province</th>
-                                                    <td>Uttar Pradesh</td>
+                                                    <td><%= user.state %></td>
                                                   </tr>
                                                   <tr>
                                                     <th scope="row">Billing City</th>
-                                                    <td>Agra</td>
+                                                    <td><%= user.city %></td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th scope="row">Zip</th>
+                                                    <td><%= user.zip %></td>
                                                   </tr>
                                                   <tr>
                                                     <th scope="row">Billing Method</th>
@@ -222,7 +224,7 @@
                         </div>
                         <div id="tab2">
                             <form method = "POST" action = "/domain/custom/dns">
-                                <input type="text" name = "domainName" value = "<%= domain.$.DomainName %>">
+                                <input type="text" name = "domainName" value = "<%= domain.$.DomainName %>" hidden>
                                 <% domain.DnsDetails[0].Nameserver.forEach((nameserver, index)=> { %>
                                     <input type="text" name = "nameserver<%= index + 1 %>" value = "<%= nameserver %>">
                                 <% }) %>
