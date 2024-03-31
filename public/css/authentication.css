@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:wght@500&display=swap');
+
+body {
+    background: #000;
+}
+
+.navbar {
+    background: #fff;
+}
+
+.auth-form-wrapper {
+    background: #fff;
+    padding: 1em;
+    width: 40%;
+    border: 1px solid #E1E1E1;
+    border-radius: 20px;
+}
+
+.auth-form input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 10px;
+    border: 1px solid #EFEFEF
+}
+
+.auth-title {
+    font-family: Nunito;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32.74px;
+    text-align: left;
+}
+
+.auth-desc {
+    font-family: Nunito;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.1px;
+    text-align: left;
+}
+
+.auth-btn {
+    background: #F8CC5E;
+    color: #000;
+    padding: 10px 0;
+    border: unset;
+}
+
+.auth-switch {
+    font-family: Nunito;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.1px;
+    text-align: left;
+    color: rgba(0,0,0,0.5);
+}
+
+.auth-switch-link{
+    color: rgba(0,0,0,1);
+}
+
+.auth-switch-link:hover{
+    color: rgba(0,0,0,1);
+}

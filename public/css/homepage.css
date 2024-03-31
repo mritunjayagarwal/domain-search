@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:wght@500&display=swap');
+
 section {
     padding: 100px 0;
 }
@@ -71,9 +73,96 @@ section {
     color: #6217C4;
 }
 
+/* Hero Section */
+
 .hero-section {
-    background: linear-gradient(135deg, #6217C4 0.59%, #8E4DE6 100%);
+    background: url('../img//Home/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #fff;
+}
+
+.hero-head {
+    font-family: Nunito;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 1.4249999523162842px;
+    text-align: center;
+}
+
+.hero-desc {
+    font-family: Nunito;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 0.6000000238418579px;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.hero-btn-left{
+    font-family: Nunito;
+    background: #F8CC5E;
+    color: #fff;
+    padding: 0.5em 2em;
+    margin-right: 10px;
+    outline: none;
+    border: unset;
+}
+
+.hero-btn-right{
+    font-family: Nunito;
+    background: #fff;
+    color: #F8CC5E;
+    padding: 0.5em 2em;
+    border: unset;
+    outline: unset;
+}
+
+/* Domain Search */
+
+.domain-search-section{
+    padding:0;
+}
+
+.domain-search-wrapper{
+    padding: 1em;
+    margin-top: -50px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 48px 0px #0000000F;
+}
+
+.domain-search-form input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #D5DAE2
+}
+
+.domain-search-btn{
+    background: #6C22D2;
+    color: #fff;
+    padding: 10px;
+    border: unset;
+    outline: unset;
+}
+
+.domain-result-title{
+    font-family: Nunito;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 1.4249999523162842px;
+}
+
+.domain-result-wrapper{
+    padding: 0.5em 1em;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 48px 0px #0000000F;
 }
 
 /* Support Section */
@@ -97,7 +186,7 @@ section {
 
 /* Plans section */
 
-.plan-item{
+.plan-item {
     padding: 1em
 }
 
@@ -116,7 +205,7 @@ section {
     font-weight: 600;
     line-height: 24px;
     letter-spacing: 0.6000000238418579px;
-    color:#F8CC5E
+    color: #F8CC5E
 }
 
 .plan-price {
@@ -136,7 +225,7 @@ section {
     color: #77838F;
 }
 
-.plan-btn{
+.plan-btn {
     background: rgba(108, 34, 210, 0.3);
     border: unset;
     outline: unset;
@@ -147,11 +236,11 @@ section {
     line-height: 20.46px;
     letter-spacing: 1.0714285373687744px;
     border-radius: 5px;
-    color:#6217C4;
+    color: #6217C4;
 }
 
-.plan-btn-yellow{
-    background:rgba(248, 204, 94, 0.3);
+.plan-btn-yellow {
+    background: rgba(248, 204, 94, 0.3);
     border: unset;
     outline: unset;
     padding: 0.8em 2em;
@@ -161,5 +250,5 @@ section {
     line-height: 20.46px;
     letter-spacing: 1.0714285373687744px;
     border-radius: 5px;
-    color:#F8CC5E;
+    color: #F8CC5E;
 }

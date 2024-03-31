@@ -28,18 +28,8 @@ passport.use('local.login', new LocalStrategy({
             return done(null, false, req.flash('error', messages));
         }
 
-        User.updateOne({
-            _id: user._id
-        }, {
-            $set: {
-                "lastlogin": new Date()
-            }
-        }, (err) => {
-            if(err){
-                req.flash("error", "Something went wrong.Please Try again")
-            } 
-            return done(null, user);
-        })
+        console.log("Reached");
+        return done(null, user);
     })
 }))
 

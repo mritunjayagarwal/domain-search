@@ -57,11 +57,20 @@ container.resolve(function(routes, domain, _){
     function configureExpress(app){
 
         require('./passport/signup');
+        require('./passport/login');
 
         app.use(express.static('public'));
+        app.use(express.json({
+            verify: (req, res, buf) => {
+                const url = req.originalUrl;
+                if(url.startsWith('/success')){
+                    req.rawBody = buf.toString()
+                    console.log(req.rawBody);
+                }
+            }
+        }))
+        app.use(express.urlencoded({ extended: true}));
         app.use(cookieParser());
-        app.use(bodyParser.json());
-        app.use(bodyParser.urlencoded({ extended: true}));
         app.use(session({
             secret: 'heylu',
             resave: true,

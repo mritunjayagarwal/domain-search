@@ -1,129 +1,211 @@
 const { query } = require("express");
 const WsClient = require('whalestack-sdk');
+const crypto = require('crypto');
 const client = new WsClient(
    'dc4f15a38156',
    'FcxY-Aheg-br!R-VKah-fa*6-jaR6'
 );
-module.exports = function (passport) {
+
+const vallidateRequest = function (data) {
+   const secretKey = "F-6S-8Ms_UWdHYIkg9Vb6Xo168fHi2XfJhp5b7RX2nLqokL0gdiYHZP_VI83Qsco";
+   if (typeof data === 'object' && data.verify_hash && secretKey) {
+      const ordered = { ...data };
+      delete ordered.verify_hash;
+      const string = JSON.stringify(ordered);
+      const hmac = crypto.createHmac('sha1', secretKey);
+      hmac.update(string);
+      const hash = hmac.digest('hex');
+      console.log(hash === data.verify_hash)
+      return hash === data.verify_hash;
+   }
+   return false;
+}
+
+module.exports = function (passport, axios, User, xml2js) {
    return {
       SetRouting: function (router) {
          router.get('/', this.indexPage);
          router.get('/signup', this.signup);
-         router.get('/domain/checkout', this.domainCheckout);
-         router.get('/create/customer', this.postCustomer);
-         router.get('/webhook', this.verifyWebhook);
+         router.get('/login', this.login);
+         router.post('/checkout', this.domainCheckout);
+         router.post('/success', this.verifyWebhook);
          router.get('/logout', this.logout);
 
          router.post('/create', this.createAccount);
          router.post('/login', this.getInside);
       },
       indexPage: async function (req, res) {
-         return res.render('index', { domain: null });
+         return res.render('index', { domain: null, user: req.user ?? null });
       },
       signup: function (req, res) {
+         if (req.user) return res.redirect('/');
          return res.render('signup.ejs');
+      },
+      login: function (req, res) {
+         if (req.user) return res.redirect('/');
+         return res.render('login.ejs');
       },
       createAccount: passport.authenticate('local.signup', {
          successRedirect: '/',
-         failureRedirect: '/',
+         failureRedirect: 'back',
          failureFlash: true
       }),
       getInside: passport.authenticate('local.login', {
-         successRedirect: 'back',
+         successRedirect: '/',
          failureRedirect: 'back',
          failureFlash: true
       }),
       logout: function (req, res) {
-         req.logout();
-         res.redirect('/');
+         req.logout(function (err) {
+            if (err) { return next(err); }
+            res.redirect('/');
+         });
       },
       domainCheckout: async function (req, res) {
-         let response = await client.post('/checkout/hosted', {
-            "charge": {
-               "customerId": "56b57d4fc60f",
-               "billingCurrency": "USD",
-               "lineItems": [
-                  {
-                     "description": "PCI Graphics Card",
-                     "netAmount": 199,
-                     "quantity": 1,
-                     "productId": "P1234"
-                  }
-               ],
-               "discountItems": [
-                  {
-                     "description": "Loyalty Discount",
-                     "netAmount": 5
-                  }
-               ],
-               "shippingCostItems": [
-                  {
-                     "description": "Shipping and Handling",
-                     "netAmount": 3.99,
-                     "taxable": false
-                  }
-               ],
-               "taxItems": [
-                  {
-                     "name": "Sales Tax",
-                     "percent": 0.0825
-                  }
-               ]
-            },
-            "settlementAsset": "USDC:GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN",
-            "checkoutLanguage": "en",
-            "webhook": "https://www.your-server.com/path/to/webhook",
-            "pageSettings": {
-               "returnUrl": "https://www.merchant.com/path/to/complete/checkout",
-               "cancelUrl": "https://www.merchant.com/path/to/cancel/checkout",
-               "shopName": "Name Cheap Clone",
-               "displayBuyerInfo": true,
-               "displaySellerInfo": true
-            },
-            "meta": {
-               "customAttribute": "customValue"
-            },
-            "anchors": {
-               "BITCOIN": "BTC:GCQVEST7KIWV3KOSNDDUJKEPZLBFWKM7DUS4TCLW2VNVPCBGTDRVTEIT",
-               "LITECOIN": "LTC:GCQVEST7KIWV3KOSNDDUJKEPZLBFWKM7DUS4TCLW2VNVPCBGTDRVTEIT"
+         if (req.user == undefined) return res.redirect("/");
+         let status = false;
+         if (req.body.fname === undefined || req.body.lname === undefined || req.body.phone === undefined || req.body.address === undefined || req.body.orgname === undefined || req.body.country === undefined || req.body.state === undefined | req.body.city === undefined || req.body.zip === undefined || req.body.domainName === undefined) {
+            return res.redirect('/');
+         }
+         const prices = [
+            {
+               "TLD": "com",
+               "Price": 2.2,
             }
-         });
-         res.redirect(response.data.url);
-      },
-      postCustomer: async function (req, res) {
-         let response = await client.post('/customer', {
-            "customer": {
-               "email": "john@doe.com",
-               "firstname": "John",
-               "lastname": "Doe",
-               "company": "ACME Inc.",
-               "adr1": "810 Beach St",
-               "adr2": "Finance Dept",
-               "zip": "CA 94133",
-               "city": "San Francisco",
-               "countrycode": "US",
-               "phonenumber": "+14156226819",
-               "taxid": "US1234567890",
-               "note": "Always pays on time. Never late.",
-               "meta": {
-                  "reference": 123
+         ]
+         let price;
+         if (prices.map(price => price.TLD).includes(req.body.domainName.split('.')[1])) {
+            console.log("Yes");
+            price = prices.find(price => price.TLD == req.body.domainName.split('.')[1]).Price;
+            console.log(price);
+         } else {
+            console.log("Did not exists");
+            return res.redirect('/');
+         }
+         const returnQuery = async () => {
+            return await User.findOneAndUpdate({ _id: req.user._id }, {
+               $set: {
+                  fname: req.body.fname,
+                  lname: req.body.lname,
+                  phone: req.body.phone,
+                  address: req.body.address,
+                  organisation: req.body.orgname,
+                  country: req.body.country,
+                  state: req.body.state,
+                  city: req.body.city,
+                  zip: req.body.zip
                }
-            }
-         });
-         console.log(response);
+            }, (err, result) => {
+               if (err) status = true;
+            });
+         }
+         if (status) return res.redirect('/');
+         try {
+            const resp = await axios({
+               method: 'get',
+               url: 'https://api.plisio.net/api/v1/invoices/new',
+               params: {
+                  source_currency: 'USD',
+                  source_amount: price ?? 1,
+                  order_number: req.user._id + 'plisio' + Math.floor(Math.random() * (100000 - 1) + 1),
+                  currency: 'TRX',
+                  email: req.user.email,
+                  order_name: req.body.domainName,
+                  callback_url: "https://59c5-103-47-75-53.ngrok-free.app/success?json=true",
+                  api_key: 'F-6S-8Ms_UWdHYIkg9Vb6Xo168fHi2XfJhp5b7RX2nLqokL0gdiYHZP_VI83Qsco'
+               }
+            });
+            console.log(resp.data.data);
+            if (resp.data.status !== 'success') return res.send("Failure!")
+            res.redirect(resp.data.data.invoice_url);
+         } catch (error) {
+            console.log(error.response.data);
+         }
       },
       verifyWebhook: async (req, res) => {
-         const authHeader = req.headers['x-webhook-auth'];
-         const payload = req.body;
-
-         if (authHeader !== crypto.createHash('sha256').update(yourApiSecret + JSON.stringify(payload)).digest('hex')) {
-            return res.status(401).json({ error: 'Unauthorized' });
+         console.log("Okay! Lolll Reacheddd")
+         const data = JSON.parse(req.rawBody);
+         const userId = data.order_number.split('plisio')[0];
+         if (data && vallidateRequest(data) && data.status === "completed") {
+            console.log("reached true case")
+            const user = await User.findOne({_id: userId});
+            console.log(user)
+            const resp = await axios({
+               method: 'get',
+               url: 'https://api.sandbox.namecheap.com/xml.response',
+               params: {
+                  ApiUser: 'Prithvi0707',
+                  ApiKey: "23155f2f37ca4ccba99b8962c78cb028",
+                  UserName: 'Prithvi0707',
+                  Command: "namecheap.domains.create",
+                  ClientIp: "122.161.72.212",
+                  DomainName: data.order_name,
+                  Years: 1,
+                  AuxBillingFirstName: user.fname,
+                  AuxBillingLastName: user.lname,
+                  AuxBillingAddress1: user.address,
+                  AuxBillingStateProvince: user.state,
+                  AuxBillingPostalCode: user.zip,
+                  AuxBillingCountry: user.country,
+                  AuxBillingPhone: " 1." + user.phone,
+                  AuxBillingEmailAddress: user.email,
+                  AuxBillingOrganizationName: user.organisation,
+                  AuxBillingCity: user.city,
+                  TechFirstName: user.fname,
+                  TechLastName: user.lname,
+                  TechAddress1: user.address,
+                  TechStateProvince: user.state,
+                  TechPostalCode: user.zip,
+                  TechCountry: user.country,
+                  TechPhone: " 1." + user.phone,
+                  TechEmailAddress: user.email,
+                  TechOrganizationName: user.organisation,
+                  TechCity: user.city,
+                  AdminFirstName: "John",
+                  AdminLastName: "Smith",
+                  AdminAddress1: "8939%cross%20Blvd",
+                  AdminStateProvince: "CA",
+                  AdminPostalCode: "9004",
+                  AdminCountry: "US",
+                  AdminPhone: " 1.6613102107",
+                  AdminEmailAddress: "joe@gmail.com",
+                  AdminOrganizationName: "NC",
+                  AdminCity: "CA",
+                  RegistrantFirstName: user.fname,
+                  RegistrantLastName: user.lname,
+                  RegistrantAddress1: user.address,
+                  RegistrantStateProvince: user.state,
+                  RegistrantPostalCode: user.zip,
+                  RegistrantCountry: user.country,
+                  RegistrantPhone: " 1." + user.phone,
+                  RegistrantEmailAddress: user.email,
+                  RegistrantOrganizationName: user.organisation,
+                  RegistrantCity: user.city,
+                  AddFreeWhoisguard: "no",
+                  WGEnabled: "no",
+                  GenerateAdminOrderRefId: "False",
+                  IsPremiumDomain: "False",
+                  EapFee: "0"
+               }
+            });
+            xml2js.parseString(resp.data, async function (err, results) {
+               if (results.ApiResponse.$.Status == "OK") {
+                  await User.findOneAndUpdate({ _id: userId }, {
+                     $push: {
+                        domains: data.order_name
+                     }
+                  })
+               }else{
+                  console.log(results.ApiResponse.Error);
+               }
+            });
+            res.writeHead(200);
+            res.end('This is a correct JSON callback');
+         } else {
+            console.log("Reached false case")
+            res.writeHead(422);
+            res.end('Incorrect data 1');
          }
-
-         // Valid webhook, continue processing...
-         // Your code logic here...
-
-         res.status(200).send('Webhook processed successfully');
       }
    }
 }
