@@ -36,6 +36,15 @@
     color: #000
 }
 
+.domain-validity {
+    font-family: DM Sans;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 31.25px;
+    text-align: left;
+    color: #000
+}
+
 /* Tab Switch */
 
 .wrapper {
