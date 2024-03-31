@@ -85,7 +85,7 @@ module.exports = function (passport, axios, User, xml2js) {
          const returnQuery = async () => {
             return await User.findOneAndUpdate({ _id: req.user._id }, {
                $set: {
-                  fname: req.body.fname,
+                  fname: req.body.fname, 
                   lname: req.body.lname,
                   phone: req.body.phone,
                   address: req.body.address,
@@ -99,6 +99,7 @@ module.exports = function (passport, axios, User, xml2js) {
                if (err) status = true;
             });
          }
+         returnQuery();
          if (status) return res.redirect('/');
          try {
             const resp = await axios({
