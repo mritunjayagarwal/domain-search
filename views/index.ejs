@@ -17,8 +17,8 @@
         <!-- Container wrapper -->
         <div class="container">
             <!-- Navbar brand -->
-            <a class="navbar-brand me-2" href="#">
-                <img src="./assets/img/logo.png" style="width: 80px; height: auto;margin-top: -10px" alt=""> Domain
+            <a class="navbar-brand me-2" style = "color: #000; margin-top: -11px" href="/">
+                Web Domain Service
             </a>
 
             <!-- Toggle button -->
@@ -59,10 +59,18 @@
                             Docs
                         </a>
                     </li>
+                    <% if(!user){ %>
+                        <li class="nav-item">
+                            <a href="/login"
+                                class="px-3 pt-2 btn-link">
+                                Sign In
+                            </a>
+                        </li>
+                    <% } %>
                     <li class="nav-item">
                         <% if(user){ %>
                             <a href="/domains/list">
-                                <button type="button" class="px-3 btn pt-2 main-btn" data-toggle="modal"
+                                <button type="button" class="px-3 btn main-btn" data-toggle="modal"
                                     data-target="#exampleModal"
                                     style="font-size: 15px;margin-top: -8px; font-weight: 600;">
                                     Dashboard
@@ -133,13 +141,15 @@
                                 <%= domain.Domain %>
                             </p>
                             <p class="mt-3">
-                                <%= domain.Available==='true' ? 'Available' : 'Not Available' %>
+                                <%= domain.Available === 'true' && domain.IsPremiumName === 'false' ? 'Available' : 'Not Available' %>
                             </p>
                             <!-- Button trigger modal -->
-                            <button type="button" class="domain-search-btn" data-toggle="modal"
+                            <% if(domain.Available === 'true' && domain.IsPremiumName === 'false'){ %>
+                                <button type="button" class="domain-search-btn" data-toggle="modal"
                                 data-target="#usernameModal">
                                 Buy Now
                             </button>
+                            <% } %>
                         </div>
                     </div>
                     <% } %>
