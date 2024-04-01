@@ -35,7 +35,7 @@ module.exports = function (passport, axios, User, xml2js) {
          router.post('/login', this.getInside);
       },
       indexPage: async function (req, res) {
-         return res.render('index', { domain: null, user: req.user ?? null });
+         return res.render('index', { domain: null, user: req.user ?? null, domains: []});
       },
       signup: function (req, res) {
          if (req.user) return res.redirect('/');
@@ -70,7 +70,27 @@ module.exports = function (passport, axios, User, xml2js) {
          const prices = [
             {
                "TLD": "com",
-               "Price": 2.2,
+               "Price": 14.9,
+            },
+            {
+               "TLD": "net",
+               "Price": 16.1,
+            },
+            {
+               "TLD": "org",
+               "Price": 13.49,
+            },
+            {
+               "TLD": "co",
+               "Price": 32.2,
+            },
+            {
+               "TLD": "dev",
+               "Price": 16.17,
+            },
+            {
+               "TLD": "io",
+               "Price": 49.78,
             }
          ]
          let price;
@@ -128,11 +148,11 @@ module.exports = function (passport, axios, User, xml2js) {
             console.log(user)
             const resp = await axios({
                method: 'get',
-               url: 'https://api.sandbox.namecheap.com/xml.response',
+               url: 'https://api.namecheap.com/xml.response',
                params: {
-                  ApiUser: 'Prithvi0707',
-                  ApiKey: "23155f2f37ca4ccba99b8962c78cb028",
-                  UserName: 'Prithvi0707',
+                  ApiUser: 'Webdomainservice',
+                  ApiKey: "a50c0d969a584010be0e008abc573168",
+                  UserName: 'Webdomainservice',
                   Command: "namecheap.domains.create",
                   ClientIp: "122.161.72.212",
                   DomainName: data.order_name,

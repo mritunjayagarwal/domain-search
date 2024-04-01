@@ -4,6 +4,12 @@ section {
     padding: 100px 0;
 }
 
+.main-nav-btn {
+    font-size: 15px;
+    margin-top: -8px;
+    font-weight: 600;
+}
+
 .golden-pill {
     color: #fff;
     font-family: Nunito;
@@ -149,7 +155,7 @@ section {
     box-shadow: 0px 2px 48px 0px #0000000F;
 }
 
-.domain-search-form input {
+.domain-search-form input,  .domain-search-form select{
     width: 100%;
     padding: 10px;
     border: 1px solid #D5DAE2
@@ -264,4 +270,32 @@ section {
     letter-spacing: 1.0714285373687744px;
     border-radius: 5px;
     color: #F8CC5E;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .navbar-brand{
+        margin-top: 0px !important;
+    }
+
+    .nav-link-item {
+        padding: 10px 0;
+        margin-left: -15px
+    }
+
+    .main-nav-btn {
+        width: 100%;
+        margin-top: 10px
+    }
+
+    .hero-head{
+        font-size: 25px;
+        line-height: unset;
+        text-align: left;
+    }
+
+    .hero-desc{
+        width: 100%;
+        text-align: justify;
+    }
 }
