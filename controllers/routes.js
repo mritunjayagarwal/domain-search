@@ -38,11 +38,11 @@ module.exports = function (passport, axios, User, xml2js) {
          return res.render('index', { domain: null, user: req.user ?? null, domains: []});
       },
       signup: function (req, res) {
-         if (req.user) return res.redirect('/');
+         if (req.user) return res.redirect('/signup');
          return res.render('signup.ejs');
       },
       login: function (req, res) {
-         if (req.user) return res.redirect('/');
+         if (req.user) return res.redirect('/signup');
          return res.render('login.ejs');
       },
       createAccount: passport.authenticate('local.signup', {
@@ -205,6 +205,9 @@ module.exports = function (passport, axios, User, xml2js) {
                }
             });
             xml2js.parseString(resp.data, async function (err, results) {
+               console.log("Payment Completed. Now Adding Domain to User's Account");
+               console.log(userId);
+               console.log(results.ApiResponse.$.Status);
                if (results.ApiResponse.$.Status == "OK") {
                   await User.findOneAndUpdate({ _id: userId }, {
                      $push: {

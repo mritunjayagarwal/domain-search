@@ -158,7 +158,7 @@ module.exports = function (User, axios, xml2js) {
             });
         },
         listDomains: async (req, res, next) => {
-            if (req.user === undefined) return res.redirect('/');
+            if (req.user === undefined) return res.redirect('/signup');
             console.log(req.user)
             const resp = await axios({
                 method: 'get',
@@ -172,8 +172,6 @@ module.exports = function (User, axios, xml2js) {
                 }
             });
             xml2js.parseString(resp.data, function (err, results) {
-                // display the json data 
-                console.log(results)
                 if (req.user === undefined) return false;
                 const userDomains = req.user.domains.map(domain => domain.toLowerCase());
                 const domains = results.ApiResponse.CommandResponse[0].DomainGetListResult[0].Domain.filter(domain => userDomains.includes(domain.$.Name));
