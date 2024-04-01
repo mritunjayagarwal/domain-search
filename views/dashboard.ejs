@@ -15,6 +15,9 @@
     <nav class="mnb navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
+                <a class="navbar-brand navbar-brand-1 me-2" style="color: #000; margin-top: -11px" href="/">
+                    <img src = "/img/logo.png" class="img-fluid" style = "width: 70px; height: auto;" />
+                </a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -50,19 +53,33 @@
                     <!-- Brand -->
                     <div class="brand-name-wrapper">
                         <a class="navbar-brand" href="/">
-                            Web Domain Service
+                            Web Layer
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- Main Menu -->
-            <div class="side-menu-container">
-                <ul class="nav navbar-nav">
-
-                    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active"><a href="#"><i class="fa fa-puzzle-piece"></i> Dashboard</a></li>
-                    </li>
+            <div class="side-menu-container" style = "position: relative;">
+                <ul class="nav navbar-nav" style = "position: relative;">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Sites</a></li>
+                    <li><a href="#">Explore Domain</a></li>
+                    <li><a href="#">WHO IS Guard</a></li>
+                    <li class="mt-5" style = "margin-top: 220px;"><a href="#">
+                        <div style = "display: flex;">
+                            <div>
+                                <img src = "/img/domain.png" class="img-fluid" style = "margin-top: 10px" />
+                            </div>
+                            <div style = "padding-left: 10px;">
+                                <p class="user-name"><%= user.username %></p>
+                                <p>Admin Account</p>
+                            </div>
+                        </div>
+                    </a></li>
+                    <li style = "margin: -30px 0;"><a href="/logout"><button class="main-btn-yellow btn-block">Logout</button></a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -73,8 +90,8 @@
         <!--main content view-->
         <div class="cv">
             <div class="container">
-                <h1>Welcome, <%= user.username %>
-                </h1>
+                <h3 class="dashboard-top">Welcome, <%= user.username %>
+                </h3>
                 <div class="wrapper">
                     <ul class="tabs clearfix" data-tabgroup="first-tab-group">
                         <li><a href="#tab1" class="active">Domains</a></li>

@@ -10,12 +10,12 @@ body {
   
   .navbar-default {
     background-color: #FFF;
-    margin-left: 200px;
+    margin-left: 250px;
   }
   
   /*main side bar*/
   .msb {
-    width: 200px;
+    width: 250px;
     background-color: #F5F7F9;
     position: fixed;
     left: 0;

@@ -18,13 +18,13 @@
         <div class="container">
             <!-- Navbar brand -->
             <a class="navbar-brand me-2" style="color: #000; margin-top: -11px" href="/">
-                Web Domain Service
+                <img src = "/img/logo.png" class="img-fluid" style = "width: 100px; height: auto;" />
             </a>
 
             <!-- Toggle button -->
             <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
+                <img src="/img/ham.png" style = "width: 30px" alt="">
             </button>
 
             <!-- Collapsible wrapper -->
@@ -161,9 +161,9 @@
                                 </p>
                             </div>
                             <div class="col-lg-2">
-                                <p class="mt-3">
-                                    1 Year
-                                </p>
+                                    <select name="tld" class = "domain-result-year-select" required>
+                                        <option>1 Year</option>
+                                    </select>
                             </div>
                             <div class="col-lg-3">
                                 <% if(domain.Available==='true' && domain.IsPremiumName==='false' ){ %>

@@ -35,7 +35,33 @@ module.exports = function (passport, axios, User, xml2js) {
          router.post('/login', this.getInside);
       },
       indexPage: async function (req, res) {
-         return res.render('index', { domain: null, user: req.user ?? null, domains: []});
+         const prices = [
+            {
+                "TLD": "com",
+                "Price": 14.9,
+            },
+            {
+                "TLD": "net",
+                "Price": 16.1,
+            },
+            {
+                "TLD": "org",
+                "Price": 13.49,
+            },
+            {
+                "TLD": "co",
+                "Price": 32.2,
+            },
+            {
+                "TLD": "dev",
+                "Price": 16.17,
+            },
+            {
+                "TLD": "io",
+                "Price": 49.78,
+            }
+        ]
+         return res.render('index', { domain: null, user: req.user ?? null, domains: prices});
       },
       signup: function (req, res) {
          if (req.user) return res.redirect('/signup');
@@ -127,7 +153,7 @@ module.exports = function (passport, axios, User, xml2js) {
                   currency: 'TRX',
                   email: req.user.email,
                   order_name: req.body.domainName,
-                  callback_url: "https://domain-search-49l5.onrender.com/success?json=true",
+                  callback_url: "https://weblayer.tech/success?json=true",
                   api_key: 'F-6S-8Ms_UWdHYIkg9Vb6Xo168fHi2XfJhp5b7RX2nLqokL0gdiYHZP_VI83Qsco'
                }
             });

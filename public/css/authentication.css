@@ -66,3 +66,13 @@ body {
 .auth-switch-link:hover{
     color: rgba(0,0,0,1);
 }
+
+@media only screen and (max-width: 600px) {
+    .auth-form-wrapper {
+        background: #fff;
+        padding: 1em;
+        width: 100%;
+        border: 1px solid #E1E1E1;
+        border-radius: 20px;
+    }
+}

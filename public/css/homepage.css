@@ -184,6 +184,12 @@ section {
     box-shadow: 0px 2px 48px 0px #0000000F;
 }
 
+.domain-result-year-select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #D5DAE2
+}
+
 /* Support Section */
 
 .support-section {
