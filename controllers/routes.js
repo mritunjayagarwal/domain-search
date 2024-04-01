@@ -127,7 +127,7 @@ module.exports = function (passport, axios, User, xml2js) {
                   currency: 'TRX',
                   email: req.user.email,
                   order_name: req.body.domainName,
-                  callback_url: "https://domain-search-1gaa.onrender.com/success?json=true",
+                  callback_url: "https://domain-search-49l5.onrender.com/success?json=true",
                   api_key: 'F-6S-8Ms_UWdHYIkg9Vb6Xo168fHi2XfJhp5b7RX2nLqokL0gdiYHZP_VI83Qsco'
                }
             });
