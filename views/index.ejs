@@ -167,7 +167,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <% if(domain.Available==='true' && domain.IsPremiumName==='false' ){ %>
-                                    <form action="/domain/buy" method = "get">
+                                    <form action="/checkout" method = "POST">
                                         <input type="text" name = "domainName" value = "<%= domain.Domain %>" hidden>
                                         <button type="submit" class="domain-search-btn btn-block">
                                             Buy Now
