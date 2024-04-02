@@ -10,6 +10,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/homepage.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -93,8 +94,8 @@
     <main>
         <section class="hero-section">
             <div class="container text-center">
-                <h1 class="hero-head">Unlock the Future of Domain and Cloud Hosting with Cryptocurrencies</h1>
-                <p class="hero-desc">Web Domain Services simplifies domain registration and cloud hosting with secure,
+                <h1 class="hero-head" data-aos="fade-up" data-aos-duration="1000">Unlock the Future of Domain and Cloud Hosting with Cryptocurrencies</h1>
+                <p class="hero-desc" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Web Domain Services simplifies domain registration and cloud hosting with secure,
                     cryptocurrency
                     transactions, offering a seamless, blockchain-enhanced web management experience.</p>
                 <div class="d-flex justify-content-center mt-3">
@@ -193,7 +194,7 @@
                         needs of individuals and businesses alike.</p>
                     <div class="row mt-5">
                         <% domains.forEach(domain=> { %>
-                            <div class="col-lg-2 col-6">
+                            <div class="col-lg-2 col-6" data-aos="fade-up" data-aos-duration="1000">
                                 <h class="section-heading">.<%= domain.TLD %>
                                         </h1>
                                         <p>$<%= domain.Price %>
@@ -210,11 +211,11 @@
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
                         <div>
                             <p class="text-left"><span class="golden-pill">Hosting</span></p>
-                            <h1 class="section-heading">Offering top-tier, seamless web management with unmatched
+                            <h1 class="section-heading" data-aos="fade-up" data-aos-duration="1000">Offering top-tier, seamless web management with unmatched
                                 security for
                                 your domain and hosting needs.</h1>
-                            <p class="secondary-section-heading">Web Hosting</p>
-                            <p class="section-para">Web Domain Services offers a secure, professional platform for
+                            <p class="secondary-section-heading" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Web Hosting</p>
+                            <p class="section-para" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Web Domain Services offers a secure, professional platform for
                                 streamlined
                                 domain and hosting management, ensuring top-tier service and robust protection for your
                                 online
@@ -223,7 +224,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex align-content-center justify-content-center">
-                        <img src="/img/Home/Rectangle.png" class="img-fluid" alt="">
+                        <img src="/img/Home/Rectangle.png" class="img-fluid" alt="" data-aos="fade-left" data-aos-duration="1000">
                     </div>
                 </div>
             </div>
@@ -241,27 +242,24 @@
                 <p class="section-para text-center">Discover the extensive features of WebLayer, engineered for superior web management.</p>
                 <div class="row mt-5">
                     <div class="col-lg-4">
-                        <div class="plan-item text-center">
+                        <div class="plan-item text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                             <p class="plan-size">Secure and Anonymous Payments</p>
                             <h1 class="plan-price my-4">$19</h1>
                             <p class="plan-desc">Experience unparalleled privacy and security through our cryptocurrency payment system. Transactions are anonymous, fast, and secure, keeping your financial details private.</p>
-                            <button class="plan-btn btn-block">Select plan</button>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="plan-item text-center">
+                        <div class="plan-item text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                             <p class="plan-size-yellow">Advanced Blockchain Security</p>
                             <h1 class="plan-price my-4">$29</h1>
                             <p class="plan-desc">Leverage the power of blockchain for unmatched security. Your online assets are protected against threats with our state-of-the-art encryption and decentralized safeguarding mechanisms.</p>
-                            <button class="plan-btn-yellow btn-block">Select plan</button>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="plan-item text-center">
+                        <div class="plan-item text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
                             <p class="plan-size">One-Click Management Interface</p>
                             <h1 class="plan-price my-4">$39</h1>
                             <p class="plan-desc">Manage your web presence with ease. Our intuitive platform simplifies domain registration and hosting, allowing for quick adjustments with just a few clicks</p>
-                            <button class="plan-btn btn-block">Select plan</button>
                         </div>
                     </div>
                 </div>
@@ -272,23 +270,7 @@
             <div class="container">
                 <h1 class="sec-head text-white text-center">Tokenomics</h1>
                 <div class="row mt-5">
-                    <div class="col-lg-3 col-md-3 d-flex align-items-center">
-                        <div>
-                            <div>
-                                <h3 class="totalSupply">Total Supply</h3>
-                                <h4 class="tokenAmount">1,000,000,000</h4>
-                            </div>
-                            <div class="mt-5">
-                                <h3 class="totalSupply">Total Tax</h3>
-                                <h4 class="tokenAmount">5%</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
-                        <img src="./img/pie.png" class="img-fluid" alt=""></a>
-
-                    </div>
-                    <div class="col-lg-3 col-md-3 d-flex align-items-center mt-3">
+                    <div class="col-lg-3 col-md-3 d-flex align-items-center mt-3" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                         <div>
                             <div class="toke-item">
                                 <div class="d-flex">
@@ -296,8 +278,8 @@
                                         <span class="tokeDot mt-2" style="background: #c534b5"></span>
                                     </div>
                                     <div style="flex: 1">
-                                        <h3 class="totalSupply">Total Supply</h3>
-                                        <h4 class="tokenAmount">800 million</h4>
+                                        <h3 class="totalSupply">Liquidity Provision (85%)</h3>
+                                        <h4 class="tokenAmount">8,500,000 WBLR</h4>
                                     </div>
                                 </div>
                             </div>
@@ -307,8 +289,8 @@
                                         <span class="tokeDot mt-2" style="background: #25bec3"></span>
                                     </div>
                                     <div style="flex: 1">
-                                        <h3 class="totalSupply">Total Supply</h3>
-                                        <h4 class="tokenAmount">100 million</h4>
+                                        <h3 class="totalSupply">Beta Testers Incentives (3%)</h3>
+                                        <h4 class="tokenAmount">300,000 WBLR</h4>
                                     </div>
                                 </div>
                             </div>
@@ -318,8 +300,49 @@
                                         <span class="tokeDot mt-2" style="background: #6e1cbe"></span>
                                     </div>
                                     <div style="flex: 1">
-                                        <h3 class="totalSupply">Total Supply</h3>
-                                        <h4 class="tokenAmount">50 million</h4>
+                                        <h3 class="totalSupply">Research and Development (3%)</h3>
+                                        <h4 class="tokenAmount">300,000 WBLR</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center">
+                        <img src="./img/pie.png" class="img-fluid" alt=""></a>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 d-flex align-items-center mt-3" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <div>
+                            <div class="toke-item">
+                                <div class="d-flex">
+                                    <div class="d-flex justify-content-center pr-3">
+                                        <span class="tokeDot mt-2" style="background: #c534b5"></span>
+                                    </div>
+                                    <div style="flex: 1">
+                                        <h3 class="totalSupply">Marketing and Advisory (3%)</h3>
+                                        <h4 class="tokenAmount">300,000 WBLR</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="toke-item">
+                                <div class="d-flex">
+                                    <div class="d-flex justify-content-center pr-3">
+                                        <span class="tokeDot mt-2" style="background: #25bec3"></span>
+                                    </div>
+                                    <div style="flex: 1">
+                                        <h3 class="totalSupply">Staking Rewards (3%)</h3>
+                                        <h4 class="tokenAmount">300,000 WBLR</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="toke-item">
+                                <div class="d-flex">
+                                    <div class="d-flex justify-content-center pr-3">
+                                        <span class="tokeDot mt-2" style="background: #6e1cbe"></span>
+                                    </div>
+                                    <div style="flex: 1">
+                                        <h3 class="totalSupply">Team Allocation (2%)</h3>
+                                        <h4 class="tokenAmount">200,000 WBLR</h4>
                                     </div>
                                 </div>
                             </div>
@@ -330,8 +353,8 @@
                                         <span class="tokeDot mt-2" style="background: #2b29ca"></span>
                                     </div>
                                     <div style="flex: 1">
-                                        <h3 class="totalSupply">Total Supply</h3>
-                                        <h4 class="tokenAmount">30 million</h4>
+                                        <h3 class="totalSupply">Strategic Partnership (1%)</h3>
+                                        <h4 class="tokenAmount">100,000 WBLR</h4>
                                     </div>
                                 </div>
                             </div>
@@ -426,6 +449,10 @@
                 integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
                 crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/jquery-paginate@1.0.1/jquery-paginate.min.js"></script>
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
