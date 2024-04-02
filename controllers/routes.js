@@ -88,7 +88,7 @@ module.exports = function (passport, axios, User, xml2js) {
          });
       },
       domainCheckout: async function (req, res) {
-         if (req.user == undefined) return res.redirect("/");
+         if (req.user == undefined) return res.redirect("/signup");
          let status = false;
          if (req.body.domainName === undefined) {
             return res.redirect('/');
