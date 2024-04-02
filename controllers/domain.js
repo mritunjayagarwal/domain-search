@@ -3,7 +3,7 @@ module.exports = function (User, axios, xml2js) {
     return {
         SetRouting: function (router) {
             router.post('/domain/search', this.searchDomain);
-            router.get('/domain/buy', this.buyDomain);
+            // router.get('/domain/buy', this.buyDomain);
             router.get('/user/domains', this.getUserDomains);
             router.get('/domains/list', this.listDomains);
             router.get('/domain/:domainName', this.getDomainInfo)
@@ -65,81 +65,81 @@ module.exports = function (User, axios, xml2js) {
             });
             return res.render('index', { domain, user: req.user ?? null, domains: prices ?? []})
         },
-        buyDomain: async (req, res, next) => {
-            console.log(req.body.domainName);
-            const user = req.user;
-            console.log(user);
-            const resp = await axios({
-                method: 'get',
-                url: 'https://api.namecheap.com/xml.response',
-                params: {
-                    ApiUser: 'Webdomainservice',
-                    ApiKey: "a50c0d969a584010be0e008abc573168",
-                    UserName: 'Webdomainservice',
-                    Command: "namecheap.domains.create",
-                    ClientIp: "122.161.72.212",
-                    DomainName: 'mrituuuuuuu.com',
-                    Years: 1,
-                    AuxBillingFirstName: user.fname,
-                    AuxBillingLastName: user.lname,
-                    AuxBillingAddress1: user.address,
-                    AuxBillingStateProvince: user.state,
-                    AuxBillingPostalCode: user.zip,
-                    AuxBillingCountry: user.country,
-                    AuxBillingPhone: " 1." + user.phone,
-                    AuxBillingEmailAddress: user.email,
-                    AuxBillingOrganizationName: user.organisation,
-                    AuxBillingCity: user.city,
-                    TechFirstName: user.fname,
-                    TechLastName: user.lname,
-                    TechAddress1: user.address,
-                    TechStateProvince: user.state,
-                    TechPostalCode: user.zip,
-                    TechCountry: user.country,
-                    TechPhone: " 1." + user.phone,
-                    TechEmailAddress: user.email,
-                    TechOrganizationName: user.organisation,
-                    TechCity: user.city,
-                    AdminFirstName: "John",
-                    AdminLastName: "Smith",
-                    AdminAddress1: "8939%cross%20Blvd",
-                    AdminStateProvince: "CA",
-                    AdminPostalCode: "9004",
-                    AdminCountry: "US",
-                    AdminPhone: " 1.6613102107",
-                    AdminEmailAddress: "joe@gmail.com",
-                    AdminOrganizationName: "NC",
-                    AdminCity: "CA",
-                    RegistrantFirstName: user.fname,
-                    RegistrantLastName: user.lname,
-                    RegistrantAddress1: user.address,
-                    RegistrantStateProvince: user.state,
-                    RegistrantPostalCode: user.zip,
-                    RegistrantCountry: user.country,
-                    RegistrantPhone: " 1." + user.phone,
-                    RegistrantEmailAddress: user.email,
-                    RegistrantOrganizationName: user.organisation,
-                    RegistrantCity: user.city,
-                    AddFreeWhoisguard: "no",
-                    WGEnabled: "no",
-                    GenerateAdminOrderRefId: "False",
-                    IsPremiumDomain: "False",
-                    EapFee: "0"
-                }
-            });
-            xml2js.parseString(resp.data, async function (err, results) {
-                if (results.ApiResponse.$.Status == "OK") {
-                    await User.findOneAndUpdate({ _id: userId }, {
-                        $push: {
-                            domains: data.order_name
-                        }
-                    })
-                } else {
-                    console.log(results.ApiResponse.Error);
-                    res.send(results);
-                }
-            });
-        },
+        // buyDomain: async (req, res, next) => {
+        //     console.log(req.query.domainName);
+        //     const user = req.user;
+        //     console.log(user);
+        //     const resp = await axios({
+        //         method: 'get',
+        //         url: 'https://api.sandbox.namecheap.com/xml.response',
+        //         params: {
+        //             ApiUser: 'Prithvi0707',
+        //             ApiKey: "23155f2f37ca4ccba99b8962c78cb028",
+        //             UserName: 'Prithvi0707',
+        //             Command: "namecheap.domains.create",
+        //             ClientIp: "122.161.72.212",
+        //             DomainName: req.query.domainName,
+        //             Years: 1,
+        //             AuxBillingFirstName: "John",
+        //             AuxBillingLastName: "Smith",
+        //             AuxBillingAddress1: "8939 S.cross Blv",
+        //             AuxBillingStateProvince: "CA",
+        //             AuxBillingPostalCode: "90045",
+        //             AuxBillingCountry: "US",
+        //             AuxBillingPhone: " 1.6613102107",
+        //             AuxBillingEmailAddress: "john@gmail.com",
+        //             AuxBillingOrganizationName: "NC",
+        //             AuxBillingCity: "CA",
+        //             TechFirstName: "John",
+        //             TechLastName: "Smith",
+        //             TechAddress1: "8939 S.cross Blvd",
+        //             TechStateProvince: "CA",
+        //             TechPostalCode: "90045",
+        //             TechCountry: "US",
+        //             TechPhone: " 1.6613102107",
+        //             TechEmailAddress: "john@gmail.com",
+        //             TechOrganizationName: "NC",
+        //             TechCity: "CA",
+        //             AdminFirstName: "John",
+        //             AdminLastName: "Smith",
+        //             AdminAddress1: "8939%cross%20Blvd",
+        //             AdminStateProvince: "CA",
+        //             AdminPostalCode: "9004",
+        //             AdminCountry: "US",
+        //             AdminPhone: " 1.6613102107",
+        //             AdminEmailAddress: "joe@gmail.com",
+        //             AdminOrganizationName: "NC",
+        //             AdminCity: "CA",
+        //             RegistrantFirstName: "John",
+        //             RegistrantLastName: "Smith",
+        //             RegistrantAddress1: "8939 S.cross Blvd",
+        //             RegistrantStateProvince: "CS",
+        //             RegistrantPostalCode: "90045",
+        //             RegistrantCountry: "US",
+        //             RegistrantPhone: " 1.6613102107",
+        //             RegistrantEmailAddress: "jo@gmail.com",
+        //             RegistrantOrganizationName: "NC",
+        //             RegistrantCity: "CA",
+        //             AddFreeWhoisguard: "no",
+        //             WGEnabled: "no",
+        //             GenerateAdminOrderRefId: "False",
+        //             IsPremiumDomain: "False",
+        //             EapFee: "0"
+        //         }
+        //     });
+        //     xml2js.parseString(resp.data, async function (err, results) {
+        //         if (results.ApiResponse.$.Status == "OK") {
+        //             await User.findOneAndUpdate({ _id: userId }, {
+        //                 $push: {
+        //                     domains: data.order_name
+        //                 }
+        //             })
+        //         } else {
+        //             console.log(results.ApiResponse.Error);
+        //             res.send(results);
+        //         }
+        //     });
+        // },
         getUserDomains: async (req, res, next) => {
             const resp = await axios({
                 method: 'get',

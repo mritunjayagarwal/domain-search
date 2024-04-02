@@ -37,31 +37,31 @@ module.exports = function (passport, axios, User, xml2js) {
       indexPage: async function (req, res) {
          const prices = [
             {
-                "TLD": "com",
-                "Price": 14.9,
+               "TLD": "com",
+               "Price": 14.9,
             },
             {
-                "TLD": "net",
-                "Price": 16.1,
+               "TLD": "net",
+               "Price": 16.1,
             },
             {
-                "TLD": "org",
-                "Price": 13.49,
+               "TLD": "org",
+               "Price": 13.49,
             },
             {
-                "TLD": "co",
-                "Price": 32.2,
+               "TLD": "co",
+               "Price": 32.2,
             },
             {
-                "TLD": "dev",
-                "Price": 16.17,
+               "TLD": "dev",
+               "Price": 16.17,
             },
             {
-                "TLD": "io",
-                "Price": 49.78,
+               "TLD": "io",
+               "Price": 49.78,
             }
-        ]
-         return res.render('index', { domain: null, user: req.user ?? null, domains: prices});
+         ]
+         return res.render('index', { domain: null, user: req.user ?? null, domains: prices });
       },
       signup: function (req, res) {
          if (req.user) return res.redirect('/signup');
@@ -90,7 +90,7 @@ module.exports = function (passport, axios, User, xml2js) {
       domainCheckout: async function (req, res) {
          if (req.user == undefined) return res.redirect("/");
          let status = false;
-         if (req.body.fname === undefined || req.body.lname === undefined || req.body.phone === undefined || req.body.address === undefined || req.body.orgname === undefined || req.body.country === undefined || req.body.state === undefined | req.body.city === undefined || req.body.zip === undefined || req.body.domainName === undefined) {
+         if (req.body.domainName === undefined) {
             return res.redirect('/');
          }
          const prices = [
@@ -128,19 +128,6 @@ module.exports = function (passport, axios, User, xml2js) {
             console.log("Did not exists");
             return res.redirect('/');
          }
-         await User.findOneAndUpdate({ _id: req.user._id }, {
-            $set: {
-               fname: req.body.fname,
-               lname: req.body.lname,
-               phone: req.body.phone,
-               address: req.body.address,
-               organisation: req.body.orgname,
-               country: req.body.country,
-               state: req.body.state,
-               city: req.body.city,
-               zip: req.body.zip
-            }
-         });
          if (status) return res.redirect('/');
          try {
             const resp = await axios({
@@ -183,26 +170,26 @@ module.exports = function (passport, axios, User, xml2js) {
                   ClientIp: "122.161.72.212",
                   DomainName: data.order_name,
                   Years: 1,
-                  AuxBillingFirstName: user.fname,
-                  AuxBillingLastName: user.lname,
-                  AuxBillingAddress1: user.address,
-                  AuxBillingStateProvince: user.state,
-                  AuxBillingPostalCode: user.zip,
-                  AuxBillingCountry: user.country,
-                  AuxBillingPhone: " 1." + user.phone,
-                  AuxBillingEmailAddress: user.email,
-                  AuxBillingOrganizationName: user.organisation,
-                  AuxBillingCity: user.city,
-                  TechFirstName: user.fname,
-                  TechLastName: user.lname,
-                  TechAddress1: user.address,
-                  TechStateProvince: user.state,
-                  TechPostalCode: user.zip,
-                  TechCountry: user.country,
-                  TechPhone: " 1." + user.phone,
-                  TechEmailAddress: user.email,
-                  TechOrganizationName: user.organisation,
-                  TechCity: user.city,
+                  AuxBillingFirstName: "John",
+                  AuxBillingLastName: "Smith",
+                  AuxBillingAddress1: "8939 S.cross Blv",
+                  AuxBillingStateProvince: "CA",
+                  AuxBillingPostalCode: "90045",
+                  AuxBillingCountry: "US",
+                  AuxBillingPhone: " 1.6613102107",
+                  AuxBillingEmailAddress: "john@gmail.com",
+                  AuxBillingOrganizationName: "NC",
+                  AuxBillingCity: "CA",
+                  TechFirstName: "John",
+                  TechLastName: "Smith",
+                  TechAddress1: "8939 S.cross Blvd",
+                  TechStateProvince: "CA",
+                  TechPostalCode: "90045",
+                  TechCountry: "US",
+                  TechPhone: " 1.6613102107",
+                  TechEmailAddress: "john@gmail.com",
+                  TechOrganizationName: "NC",
+                  TechCity: "CA",
                   AdminFirstName: "John",
                   AdminLastName: "Smith",
                   AdminAddress1: "8939%cross%20Blvd",
@@ -213,16 +200,16 @@ module.exports = function (passport, axios, User, xml2js) {
                   AdminEmailAddress: "joe@gmail.com",
                   AdminOrganizationName: "NC",
                   AdminCity: "CA",
-                  RegistrantFirstName: user.fname,
-                  RegistrantLastName: user.lname,
-                  RegistrantAddress1: user.address,
-                  RegistrantStateProvince: user.state,
-                  RegistrantPostalCode: user.zip,
-                  RegistrantCountry: user.country,
-                  RegistrantPhone: " 1." + user.phone,
-                  RegistrantEmailAddress: user.email,
-                  RegistrantOrganizationName: user.organisation,
-                  RegistrantCity: user.city,
+                  RegistrantFirstName: "John",
+                  RegistrantLastName: "Smith",
+                  RegistrantAddress1: "8939 S.cross Blvd",
+                  RegistrantStateProvince: "CS",
+                  RegistrantPostalCode: "90045",
+                  RegistrantCountry: "US",
+                  RegistrantPhone: " 1.6613102107",
+                  RegistrantEmailAddress: "jo@gmail.com",
+                  RegistrantOrganizationName: "NC",
+                  RegistrantCity: "CA",
                   AddFreeWhoisguard: "no",
                   WGEnabled: "no",
                   GenerateAdminOrderRefId: "False",
