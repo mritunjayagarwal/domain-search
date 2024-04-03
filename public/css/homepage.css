@@ -244,12 +244,22 @@ section {
     color: #F8CC5E
 }
 
-.plan-price {
+.plan-icon-blue {
     font-family: Nunito;
     font-size: 60px;
     font-weight: 700;
     line-height: 75px;
     letter-spacing: 2.25px;
+    color: #6217C4;
+}
+
+.plan-icon-yellow {
+    font-family: Nunito;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 75px;
+    letter-spacing: 2.25px;
+    color: #F8CC5E;
 }
 
 .plan-desc {
