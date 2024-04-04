@@ -64,11 +64,11 @@ module.exports = function (passport, axios, User, xml2js) {
          return res.render('index', { domain: null, user: req.user ?? null, domains: prices });
       },
       signup: function (req, res) {
-         if (req.user) return res.redirect('/signup');
+         if (req.user === undefined) return res.redirect('/');
          return res.render('signup.ejs');
       },
       login: function (req, res) {
-         if (req.user) return res.redirect('/signup');
+         if (req.user === undefined) return res.redirect('/');
          return res.render('login.ejs');
       },
       createAccount: passport.authenticate('local.signup', {
